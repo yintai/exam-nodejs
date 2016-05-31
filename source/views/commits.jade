@@ -1,0 +1,19 @@
+//Created by lyndon.li on 5/30/2016.
+extends layout
+
+block content
+    p There are lastest commits for a repository in github displayed by author, and the count is limited within 25.
+    ul
+      - var len=allCommits.length>25?25:allCommits.length
+      - for(var i=0; i<len;i++){
+          li
+            div  THE AUTHOR IS #{allCommits[i].author}
+            - for(var j=0;j<allCommits[i].commits.length;j++){
+              - var comHash=allCommits[i].commits[j].Hash
+              - if(isNaN(parseInt(comHash.charAt(comHash.length-1))))
+                  span HE/HER HAS COMMIT: #{comHash}
+              - else
+                  span.colored HE/HER HAS COMMIT: #{comHash}
+            - }
+      - }
+
